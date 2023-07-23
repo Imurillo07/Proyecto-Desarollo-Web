@@ -20,6 +20,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_prod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="descripcion_prod" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="telefono_prod" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="correo_personal_prod" Type="varchar" MaxLength="100" Nullable="false" />
@@ -40,11 +41,11 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_tienda" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="descripcion_tienda" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="telefono_tienda" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="imagen_tienda" Type="varbinary(max)" />
           <Property Name="correo_tienda" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="imagen" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
@@ -90,6 +91,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_prod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
           <Property Name="descripcion_prod" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="telefono_prod" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="correo_personal_prod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -110,11 +112,11 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_tienda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
           <Property Name="descripcion_tienda" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="telefono_tienda" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="imagen_tienda" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="correo_tienda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -150,6 +152,7 @@
                 <ScalarProperty Name="correo_personal_prod" ColumnName="correo_personal_prod" />
                 <ScalarProperty Name="telefono_prod" ColumnName="telefono_prod" />
                 <ScalarProperty Name="descripcion_prod" ColumnName="descripcion_prod" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="nombre_prod" ColumnName="nombre_prod" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -168,11 +171,11 @@
           <EntitySetMapping Name="tiendas">
             <EntityTypeMapping TypeName="DBModel.tienda">
               <MappingFragment StoreEntitySet="tienda">
-                <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="correo_tienda" ColumnName="correo_tienda" />
                 <ScalarProperty Name="imagen_tienda" ColumnName="imagen_tienda" />
                 <ScalarProperty Name="telefono_tienda" ColumnName="telefono_tienda" />
                 <ScalarProperty Name="descripcion_tienda" ColumnName="descripcion_tienda" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="nombre_tienda" ColumnName="nombre_tienda" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

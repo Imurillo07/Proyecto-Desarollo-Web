@@ -30,7 +30,8 @@ namespace DW.Filters
                                   where m.permiso == permisos
                                   select m;
 
-                if(lstPermisos.ToList().Count < 1    ) {
+                if(lstPermisos.ToList().Count() == null) {
+
                 }
 
             }

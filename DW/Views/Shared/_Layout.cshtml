@@ -16,13 +16,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Emprendedores Costa Rica", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Productos", "Index", "productos")</li>
+                    <li>@Html.ActionLink("Tiendas", "Index", "tiendas")</li>
+                    @if (Model != null && Model.permiso > 0)
+                    {
+                        <li>@Html.ActionLink("Servicio Técnico", "Create", "servicio_tec")</li>
+                        <li>@Html.ActionLink("Publicar Tiendas", "Create", "tiendas")</li>
+                        <li>@Html.ActionLink("Publicar Producto", "Create", "productos")</li>
+                    }
+                    <li>@Html.ActionLink("Preguntas", "Create", "preguntas")</li>
+                    <li>@Html.ActionLink("Crear Cuenta", "Create", "usuarios")</li>
+                    <li>@Html.ActionLink("Log In", "Index", "Login")</li>
                 </ul>
             </div>
         </div>
