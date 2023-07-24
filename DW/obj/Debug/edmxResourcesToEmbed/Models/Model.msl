@@ -18,6 +18,7 @@
           <ScalarProperty Name="correo_personal_prod" ColumnName="correo_personal_prod" />
           <ScalarProperty Name="telefono_prod" ColumnName="telefono_prod" />
           <ScalarProperty Name="descripcion_prod" ColumnName="descripcion_prod" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="nombre_prod" ColumnName="nombre_prod" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
@@ -36,11 +37,11 @@
     <EntitySetMapping Name="tiendas">
       <EntityTypeMapping TypeName="DBModel.tienda">
         <MappingFragment StoreEntitySet="tienda">
-          <ScalarProperty Name="imagen" ColumnName="imagen" />
           <ScalarProperty Name="correo_tienda" ColumnName="correo_tienda" />
           <ScalarProperty Name="imagen_tienda" ColumnName="imagen_tienda" />
           <ScalarProperty Name="telefono_tienda" ColumnName="telefono_tienda" />
           <ScalarProperty Name="descripcion_tienda" ColumnName="descripcion_tienda" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="nombre_tienda" ColumnName="nombre_tienda" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

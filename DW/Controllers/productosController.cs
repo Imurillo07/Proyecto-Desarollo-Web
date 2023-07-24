@@ -46,7 +46,7 @@ namespace DW.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre_prod,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
+        public ActionResult Create([Bind(Include = "id,nombre_prod,estado,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace DW.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre_prod,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
+        public ActionResult Edit([Bind(Include = "id,nombre_prod,estado,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
         {
             if (ModelState.IsValid)
             {
