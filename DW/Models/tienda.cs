@@ -16,10 +16,10 @@ namespace DW.Models
     {
         public int id { get; set; }
         public string nombre_tienda { get; set; }
+        public int estado { get; set; }
         public string descripcion_tienda { get; set; }
         public string telefono_tienda { get; set; }
         public byte[] imagen_tienda { get; set; }
         public string correo_tienda { get; set; }
-        public byte[] imagen { get; set; }
     }
 }

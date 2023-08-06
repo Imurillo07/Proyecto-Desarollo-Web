@@ -16,6 +16,7 @@ namespace DW.Models
     {
         public int id { get; set; }
         public string nombre_prod { get; set; }
+        public int estado { get; set; }
         public string descripcion_prod { get; set; }
         public string telefono_prod { get; set; }
         public string correo_personal_prod { get; set; }

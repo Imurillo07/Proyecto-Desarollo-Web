@@ -136,7 +136,7 @@
     <Compile Include="Controllers\servicio_tecController.cs" />
     <Compile Include="Controllers\tiendasController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
-    <Compile Include="Filters\authorizedUser.cs" />
+    <Compile Include="Filters\AccessFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,21 +225,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\usuarios\Create.cshtml" />
-    <Content Include="Views\usuarios\Delete.cshtml" />
-    <Content Include="Views\usuarios\Details.cshtml" />
-    <Content Include="Views\usuarios\Edit.cshtml" />
-    <Content Include="Views\usuarios\Index.cshtml" />
-    <Content Include="Views\tiendas\Create.cshtml" />
-    <Content Include="Views\tiendas\Delete.cshtml" />
-    <Content Include="Views\tiendas\Details.cshtml" />
-    <Content Include="Views\tiendas\Edit.cshtml" />
-    <Content Include="Views\tiendas\Index.cshtml" />
-    <Content Include="Views\productos\Create.cshtml" />
-    <Content Include="Views\productos\Delete.cshtml" />
-    <Content Include="Views\productos\Details.cshtml" />
-    <Content Include="Views\productos\Edit.cshtml" />
-    <Content Include="Views\productos\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\preguntas\Create.cshtml" />
     <Content Include="Views\preguntas\Delete.cshtml" />
     <Content Include="Views\preguntas\Details.cshtml" />
@@ -250,7 +236,22 @@
     <Content Include="Views\servicio_tec\Details.cshtml" />
     <Content Include="Views\servicio_tec\Edit.cshtml" />
     <Content Include="Views\servicio_tec\Index.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\productos\Create.cshtml" />
+    <Content Include="Views\productos\Delete.cshtml" />
+    <Content Include="Views\productos\Details.cshtml" />
+    <Content Include="Views\productos\Edit.cshtml" />
+    <Content Include="Views\productos\Index.cshtml" />
+    <Content Include="Views\tiendas\Create.cshtml" />
+    <Content Include="Views\tiendas\Delete.cshtml" />
+    <Content Include="Views\tiendas\Details.cshtml" />
+    <Content Include="Views\tiendas\Edit.cshtml" />
+    <Content Include="Views\tiendas\Index.cshtml" />
+    <Content Include="Views\usuarios\Create.cshtml" />
+    <Content Include="Views\usuarios\Delete.cshtml" />
+    <Content Include="Views\usuarios\Details.cshtml" />
+    <Content Include="Views\usuarios\Edit.cshtml" />
+    <Content Include="Views\usuarios\Index.cshtml" />
+    <Content Include="Views\Login\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,6 +15,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_prod" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
     <Property Name="descripcion_prod" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="telefono_prod" Type="varchar" MaxLength="8" Nullable="false" />
     <Property Name="correo_personal_prod" Type="varchar" MaxLength="100" Nullable="false" />
@@ -35,11 +36,11 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_tienda" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
     <Property Name="descripcion_tienda" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="telefono_tienda" Type="varchar" MaxLength="8" Nullable="false" />
     <Property Name="imagen_tienda" Type="varbinary(max)" />
     <Property Name="correo_tienda" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="imagen" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="usuarios">
     <Key>

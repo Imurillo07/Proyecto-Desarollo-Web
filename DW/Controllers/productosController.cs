@@ -38,70 +38,102 @@ namespace DW.Controllers
         // GET: productos/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["admin"] == null && Session["user"] == null) 
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: productos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre_prod,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
+        public ActionResult Create([Bind(Include = "id,nombre_prod,estado,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
         {
-            if (ModelState.IsValid)
-            {
-                db.productoes.Add(producto);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(producto);
+            if (Session["admin"] == null && Session["user"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.productoes.Add(producto);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(producto);
+            }
         }
 
         // GET: productos/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            producto producto = db.productoes.Find(id);
-            if (producto == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                producto producto = db.productoes.Find(id);
+                if (producto == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(producto);
             }
-            return View(producto);
         }
 
         // POST: productos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre_prod,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
+        public ActionResult Edit([Bind(Include = "id,nombre_prod,estado,descripcion_prod,telefono_prod,correo_personal_prod,imagen")] producto producto)
         {
-            if (ModelState.IsValid)
+            if (Session["admin"] == null)
             {
-                db.Entry(producto).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            return View(producto);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(producto).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(producto);
+            }
         }
 
         // GET: productos/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            producto producto = db.productoes.Find(id);
-            if (producto == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                producto producto = db.productoes.Find(id);
+                if (producto == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(producto);
             }
-            return View(producto);
         }
 
         // POST: productos/Delete/5
@@ -109,10 +141,17 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            producto producto = db.productoes.Find(id);
-            db.productoes.Remove(producto);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                producto producto = db.productoes.Find(id);
+                db.productoes.Remove(producto);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)
