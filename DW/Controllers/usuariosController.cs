@@ -38,70 +38,104 @@ namespace DW.Controllers
         // GET: usuarios/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["admin"] == null && Session["user"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+
         }
 
-        // POST: usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+            // POST: usuarios/Create
+
+            [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,nombre,apellido,correo_personal,clave,permiso")] usuario usuario)
         {
-            if (ModelState.IsValid)
+            if (Session["admin"] == null && Session["user"] == null)
             {
-                db.usuarios.Add(usuario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    db.usuarios.Add(usuario);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(usuario);
+                return View(usuario);
+                
+            }
+            else
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
         }
 
         // GET: usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            usuario usuario = db.usuarios.Find(id);
-            if (usuario == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                usuario usuario = db.usuarios.Find(id);
+                if (usuario == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(usuario);
             }
-            return View(usuario);
         }
 
-        // POST: usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+            // POST: usuarios/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nombre,apellido,correo_personal,clave,permiso")] usuario usuario)
         {
-            if (ModelState.IsValid)
+            if (Session["admin"] == null)
             {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            return View(usuario);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(usuario).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(usuario);
+            }
         }
 
         // GET: usuarios/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            usuario usuario = db.usuarios.Find(id);
-            if (usuario == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                usuario usuario = db.usuarios.Find(id);
+                if (usuario == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(usuario);
             }
-            return View(usuario);
         }
 
         // POST: usuarios/Delete/5
@@ -109,10 +143,17 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            usuario usuario = db.usuarios.Find(id);
-            db.usuarios.Remove(usuario);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                usuario usuario = db.usuarios.Find(id);
+                db.usuarios.Remove(usuario);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

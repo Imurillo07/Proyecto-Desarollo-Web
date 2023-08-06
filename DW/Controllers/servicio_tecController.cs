@@ -42,8 +42,6 @@ namespace DW.Controllers
         }
 
         // POST: servicio_tec/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,titulo_sertec,descripcion_sertec,estado")] servicio_tec servicio_tec)
@@ -61,47 +59,66 @@ namespace DW.Controllers
         // GET: servicio_tec/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            servicio_tec servicio_tec = db.servicio_tec.Find(id);
-            if (servicio_tec == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                servicio_tec servicio_tec = db.servicio_tec.Find(id);
+                if (servicio_tec == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(servicio_tec);
             }
-            return View(servicio_tec);
         }
 
         // POST: servicio_tec/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,titulo_sertec,descripcion_sertec,estado")] servicio_tec servicio_tec)
         {
-            if (ModelState.IsValid)
+            if (Session["admin"] == null)
             {
-                db.Entry(servicio_tec).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            return View(servicio_tec);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(servicio_tec).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(servicio_tec);
+            }
         }
 
         // GET: servicio_tec/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            servicio_tec servicio_tec = db.servicio_tec.Find(id);
-            if (servicio_tec == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                servicio_tec servicio_tec = db.servicio_tec.Find(id);
+                if (servicio_tec == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(servicio_tec);
             }
-            return View(servicio_tec);
         }
 
         // POST: servicio_tec/Delete/5
@@ -109,10 +126,17 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            servicio_tec servicio_tec = db.servicio_tec.Find(id);
-            db.servicio_tec.Remove(servicio_tec);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                servicio_tec servicio_tec = db.servicio_tec.Find(id);
+                db.servicio_tec.Remove(servicio_tec);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

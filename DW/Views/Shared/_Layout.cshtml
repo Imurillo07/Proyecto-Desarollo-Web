@@ -20,17 +20,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                   <!-- @if (Model != null && Model.permiso == 1)
-                    { }-->
-                        <li>@Html.ActionLink("Productos", "Index", "productos")</li>
-                        <li>@Html.ActionLink("Tiendas", "Index", "tiendas")</li>
-                        <li>@Html.ActionLink("Servicio Técnico", "Create", "servicio_tec")</li>
-                        <li>@Html.ActionLink("Publicar Tiendas", "Create", "tiendas")</li>
-                        <li>@Html.ActionLink("Publicar Producto", "Create", "productos")</li>
-                        <li>@Html.ActionLink("Preguntas", "Create", "preguntas")</li>
-                        <li>@Html.ActionLink("Crear Cuenta", "Create", "usuarios")</li>
-                        <li>@Html.ActionLink("Log In", "Index", "Login")</li>
-                    </ul>
+                    <li>@Html.ActionLink("Productos", "Index", "productos")</li>
+                    <li>@Html.ActionLink("Tiendas", "Index", "tiendas")</li>
+                    <li>@Html.ActionLink("Servicio Técnico", "Index", "servicio_tec")</li>
+                    <li>@Html.ActionLink("Crear Cuenta", "Create", "usuarios")</li>
+                    <li>@Html.ActionLink("Preguntas", "Create", "preguntas")</li>
+                    <li>@Html.ActionLink("Registrarse", "Index", "Login")</li>
+                    <li>@Html.ActionLink("Cerrar Seccion", "Logout", "Login")</li>
+                </ul>
             </div>
         </div>
     </div>

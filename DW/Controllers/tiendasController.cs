@@ -42,8 +42,6 @@ namespace DW.Controllers
         }
 
         // POST: tiendas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,nombre_tienda,estado,descripcion_tienda,telefono_tienda,imagen_tienda,correo_tienda")] tienda tienda)
@@ -74,34 +72,46 @@ namespace DW.Controllers
         }
 
         // POST: tiendas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nombre_tienda,estado,descripcion_tienda,telefono_tienda,imagen_tienda,correo_tienda")] tienda tienda)
         {
-            if (ModelState.IsValid)
+            if (Session["admin"] == null)
             {
-                db.Entry(tienda).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            return View(tienda);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(tienda).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(tienda);
+            }
         }
 
         // GET: tiendas/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            tienda tienda = db.tiendas.Find(id);
-            if (tienda == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                tienda tienda = db.tiendas.Find(id);
+                if (tienda == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tienda);
             }
-            return View(tienda);
         }
 
         // POST: tiendas/Delete/5
@@ -109,10 +119,17 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tienda tienda = db.tiendas.Find(id);
-            db.tiendas.Remove(tienda);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                tienda tienda = db.tiendas.Find(id);
+                db.tiendas.Remove(tienda);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

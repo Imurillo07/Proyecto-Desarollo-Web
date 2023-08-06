@@ -42,8 +42,6 @@ namespace DW.Controllers
         }
 
         // POST: preguntas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,titulo_pregunta,descripcion_pregunta,correo_personal_pregunta")] pregunta pregunta)
@@ -61,47 +59,66 @@ namespace DW.Controllers
         // GET: preguntas/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            pregunta pregunta = db.preguntas.Find(id);
-            if (pregunta == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                pregunta pregunta = db.preguntas.Find(id);
+                if (pregunta == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(pregunta);
             }
-            return View(pregunta);
         }
 
         // POST: preguntas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,titulo_pregunta,descripcion_pregunta,correo_personal_pregunta")] pregunta pregunta)
         {
-            if (ModelState.IsValid)
+            if (Session["admin"] == null)
             {
-                db.Entry(pregunta).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            return View(pregunta);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(pregunta).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(pregunta);
+            }
         }
 
         // GET: preguntas/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            pregunta pregunta = db.preguntas.Find(id);
-            if (pregunta == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                pregunta pregunta = db.preguntas.Find(id);
+                if (pregunta == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(pregunta);
             }
-            return View(pregunta);
         }
 
         // POST: preguntas/Delete/5
@@ -109,10 +126,17 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            pregunta pregunta = db.preguntas.Find(id);
-            db.preguntas.Remove(pregunta);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                pregunta pregunta = db.preguntas.Find(id);
+                db.preguntas.Remove(pregunta);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

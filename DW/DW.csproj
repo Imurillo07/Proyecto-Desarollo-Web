@@ -136,7 +136,7 @@
     <Compile Include="Controllers\servicio_tecController.cs" />
     <Compile Include="Controllers\tiendasController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
-    <Compile Include="Filters\authorizedUser.cs" />
+    <Compile Include="Filters\AccessFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,6 +251,7 @@
     <Content Include="Views\usuarios\Details.cshtml" />
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
+    <Content Include="Views\Login\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
