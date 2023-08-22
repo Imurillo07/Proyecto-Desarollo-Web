@@ -13,10 +13,10 @@ namespace DW.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBEntities : DbContext
+    public partial class DBEntities2 : DbContext
     {
-        public DBEntities()
-            : base("name=DBEntities")
+        public DBEntities2()
+            : base("name=DBEntities2")
         {
         }
     

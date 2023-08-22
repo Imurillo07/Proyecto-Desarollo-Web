@@ -12,52 +12,56 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre_tienda)
+            <h4>Nombe</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estado)
+            <h4>Estado</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion_tienda)
+            <h4>Descripcion</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefono_tienda)
+            <h4>Telefono</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.imagen_tienda)
+            <h4>Imagen</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.correo_tienda)
+            <h4>Correo</h4>
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_tienda)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion_tienda)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono_tienda)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen_tienda)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo_tienda)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        if (item.estado == 1)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_tienda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion_tienda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono_tienda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.imagen_tienda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo_tienda)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    }
 
 </table>

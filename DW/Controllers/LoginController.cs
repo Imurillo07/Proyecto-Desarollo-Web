@@ -23,7 +23,7 @@ namespace DW.Controllers
         {
             try
             {
-                using (Models.DBEntities db = new Models.DBEntities())
+                using (Models.DBEntities2 db = new Models.DBEntities2())
                 {
                     var oCorreo = (from d in db.usuarios
                                    where d.correo_personal == Correo && d.clave == Pass
@@ -48,7 +48,7 @@ namespace DW.Controllers
                     }
                     else
                     {
-                        return Content("Usuario o contraseña incorrecta, intente de nuevo");
+                        return RedirectToAction("Error", "Login");
                     }
 
                 }
@@ -57,7 +57,7 @@ namespace DW.Controllers
             }
             catch (Exception ex)
             {
-                return Content("error encontrado: " + ex.ToString());
+                return RedirectToAction("Error", "Login");
             }
         }
 
@@ -65,6 +65,11 @@ namespace DW.Controllers
         {
             Session["admin"] = null;
             Session["user"] = null;
+            return View();
+        }
+
+        public ActionResult Error() 
+        { 
             return View();
         }
     }

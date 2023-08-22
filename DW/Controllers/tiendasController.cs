@@ -12,12 +12,48 @@ namespace DW.Controllers
 {
     public class tiendasController : Controller
     {
-        private DBEntities db = new DBEntities();
+        private DBEntities2 db = new DBEntities2();
 
         // GET: tiendas
         public ActionResult Index()
         {
             return View(db.tiendas.ToList());
+        }
+
+        public ActionResult Aprobar()
+        {
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View(db.tiendas.ToList());
+            }
+        }
+
+        public ActionResult Denegado()
+        {
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View(db.tiendas.ToList());
+            }
+        }
+
+        public ActionResult vistaAdmin()
+        {
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View(db.tiendas.ToList());
+            }
         }
 
         // GET: tiendas/Details/5
@@ -38,7 +74,14 @@ namespace DW.Controllers
         // GET: tiendas/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["admin"] == null && Session["user"] == null)
+            {
+                return Redirect(Url.Content("~/usuarios/Create"));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: tiendas/Create
@@ -46,11 +89,26 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,nombre_tienda,estado,descripcion_tienda,telefono_tienda,imagen_tienda,correo_tienda")] tienda tienda)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.tiendas.Add(tienda);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (Session["admin"] == null && Session["user"] == null)
+                {
+                    return Redirect(Url.Content("~/usuarios/Create"));
+                }
+                else
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.tiendas.Add(tienda);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "tiendas");
+
             }
 
             return View(tienda);
@@ -59,16 +117,23 @@ namespace DW.Controllers
         // GET: tiendas/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["admin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect(Url.Content("~/Home/Index"));
             }
-            tienda tienda = db.tiendas.Find(id);
-            if (tienda == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                tienda tienda = db.tiendas.Find(id);
+                if (tienda == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tienda);
             }
-            return View(tienda);
         }
 
         // POST: tiendas/Edit/5
@@ -76,21 +141,38 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nombre_tienda,estado,descripcion_tienda,telefono_tienda,imagen_tienda,correo_tienda")] tienda tienda)
         {
-            if (Session["admin"] == null)
+            try
             {
-                return Redirect(Url.Content("~/Home/Index"));
-            }
-            else
-            {
-                if (ModelState.IsValid)
+                if (Session["admin"] == null)
                 {
-                    db.Entry(tienda).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Redirect(Url.Content("~/Home/Index"));
                 }
-                return View(tienda);
+                else
+                {
+                    if (Session["admin"] == null)
+                    {
+                        return Redirect(Url.Content("~/Home/Index"));
+                    }
+                    else
+                    {
+                        if (ModelState.IsValid)
+                        {
+                            db.Entry(tienda).State = EntityState.Modified;
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                        return View(tienda);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "tiendas");
+
             }
         }
+         
+        
 
         // GET: tiendas/Delete/5
         public ActionResult Delete(int? id)
@@ -130,6 +212,10 @@ namespace DW.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+        }
+        public ActionResult Error()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

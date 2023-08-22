@@ -1,0 +1,113 @@
+﻿@model IEnumerable<DW.Models.producto>
+
+@{
+    ViewBag.Title = "Aprobar";
+}
+
+
+
+<h2>APROVACION DE PRODUCTOS</h2>
+
+<button>
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Vista Admin", "vistaAdmin") |
+    @Html.ActionLink("Denegado", "Denegado") |
+</button>
+
+
+<table class="table">
+    <tr>
+        <th>
+            <h4>NOMBRE</h4>
+        </th>
+        <th>
+            <h4>ESTADO</h4>
+        </th>
+        <th>
+            <h4>DESACRIPCIÓN</h4>
+        </th>
+        <th>
+            <h4>TELÉFONO</h4>
+        </th>
+        <th>
+            <h4>CORREO</h4>
+        </th>
+        <th>
+            <h4>IMAGEN</h4>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.estado == 2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo_personal_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.imagen)
+                </td>
+                <td>
+                    @Html.ActionLink("EDITAR", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("DETALLES", "Details", new { id = item.id }) |
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+<style>
+
+    table {
+        width: 70%;
+        border-collapse: collapse;
+        margin: auto;
+        margin-bottom: 20px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        border: 2px solid black;
+        padding: 5px;
+    }
+
+    td {
+        border: 2px solid black;
+        padding: 5px;
+    }
+
+    button {
+        background-color: white;
+        border-radius: 10px;
+        border-width: 0px;
+        padding: 5px;
+        margin: 5px;
+        color: black;
+    }
+
+        button:hover {
+            background-color: #FDD55E;
+            color: white;
+            border-radius: 5px;
+        }
+
+    h2 {
+        text-align: center;
+    }
+</style>

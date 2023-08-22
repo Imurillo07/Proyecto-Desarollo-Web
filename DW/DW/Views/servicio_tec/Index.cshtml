@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DW.Models.servicio_tec>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <h4>Titulo</h4>
+        </th>
+        <th>
+            <h4>Descripcion</h4>
+        </th>
+        <th>
+            <h4>Estado</h4>
+        </th>
+        <th>
+            <h4>Correo</h4>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="contenedor">
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo_sertec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion_sertec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo_personal)
+            </td>
+            <td class="boton">
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+<style>
+    .contenedor {
+        width: 40%;
+        background: white;
+        padding: 10px;
+        margin: 50px;
+        border: 1px solid white;
+        border-radius: 5px;
+    }
+
+    .boton a {
+        background-color: white;
+        border-radius: 10px;
+        border-width: 0px;
+        padding: 5px;
+        color: black;
+    }
+
+    .contenedor:hover {
+        transform: translate(15px);
+        box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 9px;
+    }
+
+    .boton a:hover {
+        background-color: #066b81;
+        color: white;
+        border-radius: 5px;
+    }
+</style>

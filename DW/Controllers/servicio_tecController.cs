@@ -12,12 +12,30 @@ namespace DW.Controllers
 {
     public class servicio_tecController : Controller
     {
-        private DBEntities db = new DBEntities();
+        private DBEntities2 db = new DBEntities2();
 
         // GET: servicio_tec
         public ActionResult Index()
         {
-            return View(db.servicio_tec.ToList());
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View(db.servicio_tec.ToList());
+            }
+        }
+        public ActionResult vistaAdmin()
+        {
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View(db.servicio_tec.ToList());
+            }
         }
 
         // GET: servicio_tec/Details/5
@@ -42,15 +60,25 @@ namespace DW.Controllers
         }
 
         // POST: servicio_tec/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,titulo_sertec,descripcion_sertec,estado")] servicio_tec servicio_tec)
+        public ActionResult Create([Bind(Include = "id,titulo_sertec,descripcion_sertec,estado,correo_personal")] servicio_tec servicio_tec)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.servicio_tec.Add(servicio_tec);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.servicio_tec.Add(servicio_tec);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "servicio_tec");
+
             }
 
             return View(servicio_tec);
@@ -79,23 +107,33 @@ namespace DW.Controllers
         }
 
         // POST: servicio_tec/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,titulo_sertec,descripcion_sertec,estado")] servicio_tec servicio_tec)
+        public ActionResult Edit([Bind(Include = "id,titulo_sertec,descripcion_sertec,estado,correo_personal")] servicio_tec servicio_tec)
         {
-            if (Session["admin"] == null)
+            try
             {
-                return Redirect(Url.Content("~/Home/Index"));
-            }
-            else
-            {
-                if (ModelState.IsValid)
+                if (Session["admin"] == null)
                 {
-                    db.Entry(servicio_tec).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Redirect(Url.Content("~/Home/Index"));
                 }
-                return View(servicio_tec);
+                else
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(servicio_tec).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View(servicio_tec);
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "servicio_tec");
+
             }
         }
 
@@ -137,6 +175,10 @@ namespace DW.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+        }
+        public ActionResult Error()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

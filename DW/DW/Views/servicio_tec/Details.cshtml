@@ -1,0 +1,94 @@
+﻿@model DW.Models.servicio_tec
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>servicio_tec</h4>
+    <hr />
+    <dl class="contenedore">
+        <div  class="titulo-detalle">
+            <dt>
+                @Html.DisplayNameFor(model => model.titulo_sertec)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.titulo_sertec)
+            </dd>
+        </div>
+
+
+        <div class="info-detalle">
+            <dt>
+                @Html.DisplayNameFor(model => model.descripcion_sertec)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.descripcion_sertec)
+            </dd>
+        </div>
+
+
+        <div>
+            <dt>
+                @Html.DisplayNameFor(model => model.estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.estado)
+            </dd>
+        </div>
+
+
+        <div class="info-detalle">
+            <dt>
+                @Html.DisplayNameFor(model => model.correo_personal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.correo_personal)
+            </dd>
+        </div>
+
+    </dl>
+</div>
+
+<div class="otro">
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
+<style>
+
+    .contenedore {
+        width: 85%;
+        margin: auto;
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .titulo-detalle {
+        text-align: center;
+        padding: 15px;
+        font-size: 30px;
+        color: #1f2194;
+    }
+
+    .info-detalle {
+        padding: 10px;
+        padding-bottom: 5px;
+        color: #0b0e8d;
+    }
+
+    .otro {
+        margin: 50px;
+    }
+</style>

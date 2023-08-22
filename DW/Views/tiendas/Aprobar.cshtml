@@ -1,0 +1,67 @@
+﻿@model IEnumerable<DW.Models.tienda>
+
+@{
+    ViewBag.Title = "Aprobar";
+}
+
+<h2>Aprobar</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create") |
+    @Html.ActionLink("Vista Admin", "vistaAdmin") |
+    @Html.ActionLink("Denegado", "Denegado") |
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <h4>Nombe</h4>
+        </th>
+        <th>
+            <h4>Estado</h4>
+        </th>
+        <th>
+            <h4>Descripcion</h4>
+        </th>
+        <th>
+            <h4>Telefono</h4>
+        </th>
+        <th>
+            <h4>Imagen</h4>
+        </th>
+        <th>
+            <h4>Correo</h4>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.estado == 2)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_tienda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion_tienda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono_tienda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagen_tienda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo_tienda)
+        </td>
+        <td>
+            @Html.ActionLink("EDITAR", "Edit", new { id = item.id }) |
+            @Html.ActionLink("DETALLES", "Details", new { id = item.id }) |
+        </td>
+    </tr>
+    }
+}
+
+</table>

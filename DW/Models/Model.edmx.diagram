@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ba85f0b9bc2f4e808076094fc98649a5" Name="Diagram1">
-        <EntityTypeShape EntityType="DBModel.pregunta" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBModel.producto" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBModel.servicio_tec" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBModel.tienda" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DBModel.usuario" Width="1.5" PointX="2.75" PointY="4.75" />
+      <Diagram DiagramId="d38667a87f3344108696ae91354bfb16" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.pregunta" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.producto" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.servicio_tec" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.tienda" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.usuario" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

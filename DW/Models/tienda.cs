@@ -19,7 +19,7 @@ namespace DW.Models
         public int estado { get; set; }
         public string descripcion_tienda { get; set; }
         public string telefono_tienda { get; set; }
-        public byte[] imagen_tienda { get; set; }
+        public string imagen_tienda { get; set; }
         public string correo_tienda { get; set; }
     }
 }

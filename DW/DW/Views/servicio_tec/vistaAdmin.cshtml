@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DW.Models.servicio_tec>
+
+@{
+    ViewBag.Title = "vistaAdmin";
+}
+
+<h2>Admin</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <h4>Titulo</h4>
+        </th>
+        <th>
+            <h4>Descripcion</h4>
+        </th>
+        <th>
+            <h4>Estado</h4>
+        </th>
+        <th>
+            <h4>Correo</h4>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo_sertec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion_sertec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo_personal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

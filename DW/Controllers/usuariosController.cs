@@ -12,27 +12,49 @@ namespace DW.Controllers
 {
     public class usuariosController : Controller
     {
-        private DBEntities db = new DBEntities();
+        private DBEntities2 db = new DBEntities2();
 
         // GET: usuarios
         public ActionResult Index()
         {
-            return View(db.usuarios.ToList());
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View(db.usuarios.ToList());
+            }
         }
 
         // GET: usuarios/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Session["admin"] == null)
+                {
+                    return Redirect(Url.Content("~/Home/Index"));
+                }
+                else
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    usuario usuario = db.usuarios.Find(id);
+                    if (usuario == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(usuario);
+                }
             }
-            usuario usuario = db.usuarios.Find(id);
-            if (usuario == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error", "usuarios");
+
             }
-            return View(usuario);
         }
 
         // GET: usuarios/Create
@@ -55,22 +77,31 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,nombre,apellido,correo_personal,clave,permiso")] usuario usuario)
         {
-            if (Session["admin"] == null && Session["user"] == null)
-            {
-                if (ModelState.IsValid)
+            try { 
+                if (Session["admin"] == null && Session["user"] == null)
                 {
-                    db.usuarios.Add(usuario);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                    if (ModelState.IsValid)
+                    {
+                        db.usuarios.Add(usuario);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
 
-                return View(usuario);
-                
+                    return View(usuario);
+
+                }
+                else
+                {
+                    return Redirect(Url.Content("~/Home/Index"));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return Redirect(Url.Content("~/Home/Index"));
+                return RedirectToAction("Error", "usuarios");
+
             }
+
+
         }
 
         // GET: usuarios/Edit/5
@@ -100,19 +131,27 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nombre,apellido,correo_personal,clave,permiso")] usuario usuario)
         {
-            if (Session["admin"] == null)
+            try
             {
-                return Redirect(Url.Content("~/Home/Index"));
-            }
-            else
-            {
-                if (ModelState.IsValid)
+                if (Session["admin"] == null)
                 {
-                    db.Entry(usuario).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Redirect(Url.Content("~/Home/Index"));
                 }
-                return View(usuario);
+                else
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(usuario).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View(usuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "servicio_tec");
+
             }
         }
 
@@ -154,6 +193,10 @@ namespace DW.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+        }
+        public ActionResult Error()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)
