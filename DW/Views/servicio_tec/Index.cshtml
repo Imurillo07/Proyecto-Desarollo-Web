@@ -4,42 +4,93 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Admin</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<button>
+    @Html.ActionLink("NUEVO", "Create")
+</button>
+
+<h2>Vistas del administrador</h2>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.titulo_sertec)
+            <h4>TITULO</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion_sertec)
+            <h4>DESCRIPCIÓN</h4>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estado)
+            <h4>ESTADO</h4>
+        </th>
+        <th>
+            <h4>CORREO</h4>
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.titulo_sertec)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion_sertec)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo_sertec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion_sertec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo_personal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<style>
+
+    table {
+        width: 70%;
+        border-collapse: collapse;
+        margin: auto;
+        margin-bottom: 20px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        border: 2px solid black;
+        padding: 5px;
+    }
+
+    td {
+        border: 2px solid black;
+        padding: 5px;
+    }
+
+    button {
+        background-color: white;
+        border-radius: 10px;
+        border-width: 0px;
+        padding: 5px;
+        margin: 5px;
+        color: black;
+    }
+
+        button:hover {
+            background-color: #FDD55E;
+            color: white;
+            border-radius: 5px;
+        }
+
+    h2 {
+        text-align: center;
+    }
+</style>

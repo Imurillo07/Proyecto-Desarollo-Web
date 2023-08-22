@@ -20,6 +20,6 @@ namespace DW.Models
         public string descripcion_prod { get; set; }
         public string telefono_prod { get; set; }
         public string correo_personal_prod { get; set; }
-        public byte[] imagen { get; set; }
+        public string imagen { get; set; }
     }
 }

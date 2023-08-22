@@ -183,8 +183,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -231,11 +231,6 @@
     <Content Include="Views\preguntas\Details.cshtml" />
     <Content Include="Views\preguntas\Edit.cshtml" />
     <Content Include="Views\preguntas\Index.cshtml" />
-    <Content Include="Views\servicio_tec\Create.cshtml" />
-    <Content Include="Views\servicio_tec\Delete.cshtml" />
-    <Content Include="Views\servicio_tec\Details.cshtml" />
-    <Content Include="Views\servicio_tec\Edit.cshtml" />
-    <Content Include="Views\servicio_tec\Index.cshtml" />
     <Content Include="Views\productos\Create.cshtml" />
     <Content Include="Views\productos\Delete.cshtml" />
     <Content Include="Views\productos\Details.cshtml" />
@@ -252,6 +247,24 @@
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
+    <Content Include="Views\productos\vistaAdmin.cshtml" />
+    <Content Include="Views\productos\Aprobar.cshtml" />
+    <Content Include="Views\productos\Denegado.cshtml" />
+    <Content Include="Views\servicio_tec\Create.cshtml" />
+    <Content Include="Views\servicio_tec\Delete.cshtml" />
+    <Content Include="Views\servicio_tec\Details.cshtml" />
+    <Content Include="Views\servicio_tec\Edit.cshtml" />
+    <Content Include="Views\servicio_tec\vistaAdmin.cshtml" />
+    <Content Include="Views\tiendas\Denegado.cshtml" />
+    <Content Include="Views\tiendas\Aprobar.cshtml" />
+    <Content Include="Views\tiendas\vistaAdmin.cshtml" />
+    <Content Include="Views\Login\Error.cshtml" />
+    <Content Include="Views\preguntas\Error.cshtml" />
+    <Content Include="Views\productos\Error.cshtml" />
+    <Content Include="Views\servicio_tec\Error.cshtml" />
+    <Content Include="Views\tiendas\Error.cshtml" />
+    <Content Include="Views\servicio_tec\Index.cshtml" />
+    <Content Include="Views\usuarios\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

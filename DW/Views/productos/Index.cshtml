@@ -1,63 +1,107 @@
 ﻿@model IEnumerable<DW.Models.producto>
 
-@{
-    ViewBag.Title = "Index";
-}
+    @{
+        ViewBag.Title = "Index";
+    }
 
-<h2>Index</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo_personal_prod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagen)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                <h4>NOMBRE</h4>
+            </th>
+            <th>
+                <h4>ESTADO</h4>
+            </th>
+            <th>
+                <h4>DESCRIPCIÓN</h4>
+            </th>
+            <th>
+                <h4>TELÉFONO</h4>
+            </th>
+            <th>
+                <h4>CORREO</h4>
+            </th>
+            <th>
+                <h4>IMAGEN</h4>
+            </th>
+            <th>
+                <h4>ACCIONES</h4>
+            </th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo_personal_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            if (item.estado == 1)
+            {
 
-</table>
+                <tr class="contenedor">
+                    <td class="imagencard">
+                        @Html.DisplayFor(modelItem => item.imagen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre_prod)
+                    </td>
+                    <td style="display:none">
+                        @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion_prod)
+                    </td>
+                    <td style="display:none">
+                        @Html.DisplayFor(modelItem => item.telefono_prod)
+                    </td>
+                    <td style="display:none">
+                        @Html.DisplayFor(modelItem => item.correo_personal_prod)
+                    </td>
+                    <td class="boton">
+                        <a>
+                            @Html.ActionLink("DETALLES", "Details", new { id = item.id })
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+        </table>
+
+
+        <style>
+            .contenedor {
+                width: 40%;
+                background: white;
+                padding: 10px;
+                margin: 50px;
+                margin-bottom: 20px;
+                border: 1px solid white;
+                border-radius: 5px;
+            }
+
+            .imagencard img {
+                width: 100%;
+                border-radius: 3px;
+            }
+
+            .boton a {
+                background-color: white;
+                border-radius: 10px;
+                border-width: 0px;
+                padding: 5px;
+                color: black;
+            }
+
+            .contenedor:hover {
+                transform: translate(15px);
+                box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+                border-radius: 9px;
+            }
+
+            .boton a:hover {
+                background-color: #066b81;
+                color: white;
+                border-radius: 5px;
+            }
+        </style>

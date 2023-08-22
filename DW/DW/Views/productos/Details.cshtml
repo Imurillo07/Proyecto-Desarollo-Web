@@ -1,0 +1,130 @@
+﻿@model DW.Models.producto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<
+
+<div class="contenedor">
+    <dl>
+
+        <!--NOMBRE-->
+        <div class="nom-detalle">
+            <dt>
+                <!--<h4>nombre</h4>-->
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre_prod)
+            </dd>
+        </div>
+       
+        <!--NO SE MUESTRA-->
+        <dt>
+            <h4>estado</h4>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+        <!---------------->
+
+        <!--IMAGEN-->
+        <div class="imagen-detalle">
+            <dt>
+                <!--<h4>imagen</h4>-->
+            </dt>
+
+            <dd class="imagenn">
+                @Html.DisplayFor(model => model.imagen)
+            </dd>
+        </div>
+
+        <!--DESCRIPCION-->
+        <div class="info-detalle">
+            <dt>
+                <h4>Descripción</h4>
+            </dt>
+
+            <dd class="info-gene">
+                @Html.DisplayFor(model => model.descripcion_prod)
+            </dd>
+        </div>
+
+        <!--MEDIOS DE CONTACTO-->
+        <div class="info-detalle">
+            <h3>Medios de Contacto</h3>
+            <dt>
+                <h4>Teléfono</h4>
+            </dt>
+
+            <dd class="info-gene">
+                @Html.DisplayFor(model => model.telefono_prod)
+            </dd>
+
+            <dt>
+                <h4>Correo</h4>
+            </dt>
+
+            <dd class="info-gene">
+                @Html.DisplayFor(model => model.correo_personal_prod)
+            </dd>
+        </div>     
+
+    </dl>
+</div>
+
+<div class="otro">
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
+<style>
+    /*DETALLES*/
+
+    .contenedore {
+        width: 85%;
+        margin: auto;
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .nom-detalle {
+        text-align: center;
+        padding: 15px;
+        font-size: 30px;
+        color: #1f2194;
+    }
+
+    .info-detalle h3 {
+        padding: 10px;
+        padding-bottom: 5px;
+        color: #0b0e8d;
+    }
+
+    .info-detalle h4 {
+        padding-top: 10px;
+        padding-left: 35px;
+        color: #1b78ad;
+    }
+
+    .info-detalle .info-gene {
+        padding-left: 90px;
+        padding-top: 5px;
+    }
+
+    .imagen-detalle .imagenn {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .otro {
+        margin: 50px;
+    }
+
+</style>

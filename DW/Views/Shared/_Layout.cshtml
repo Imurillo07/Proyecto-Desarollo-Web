@@ -1,46 +1,193 @@
-﻿<!DOCTYPE html>
-<html>
+﻿    @using DW.Models;
+    @using System;
+    @using System.Collections.Generic;
+    @using System.IO;
+    @using System.Linq;
+    @using System.Net;
+    @using System.Security.Cryptography;
+    @using System.Web;
+    @using System.Web.Mvc;}
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Emprendedores Costa Rica", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header>
+        <nav>
+            <div>
+                <div class="titulo">@Html.ActionLink("Emprendedores Costa Rica", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Productos", "Index", "productos")</li>
-                    <li>@Html.ActionLink("Tiendas", "Index", "tiendas")</li>
-                    <li>@Html.ActionLink("Servicio Técnico", "Index", "servicio_tec")</li>
-                    <li>@Html.ActionLink("Crear Cuenta", "Create", "usuarios")</li>
-                    <li>@Html.ActionLink("Preguntas", "Create", "preguntas")</li>
-                    <li>@Html.ActionLink("Registrarse", "Index", "Login")</li>
-                    <li>@Html.ActionLink("Cerrar Seccion", "Logout", "Login")</li>
-                </ul>
+
+            <div class="menu">
+                @if (Session["admin"] == null && Session["usuario"] == null)
+                {
+                    <a>@Html.ActionLink("Productos", "Index", "productos")</a>
+                    <a>@Html.ActionLink("Tiendas", "Index", "tiendas")</a>
+                    <a>@Html.ActionLink("Servicio Técnico", "Create", "servicio_tec")</a>
+                    <a>@Html.ActionLink("Preguntas", "Create", "preguntas")</a>
+                    <a>@Html.ActionLink("Crear Cuenta", "Create", "usuarios")</a>
+                    <a>@Html.ActionLink("Registrarse", "Index", "Login")</a>
+                }
+                else if (Session["usuario"] != null)
+                {
+                    <a>@Html.ActionLink("Productos", "Index", "productos")</a>
+                    <a>@Html.ActionLink("Tiendas", "Index", "tiendas")</a>
+                    <a>@Html.ActionLink("Servicio Técnico", "Create", "servicio_tec")</a>
+                    <a>@Html.ActionLink("Preguntas", "Create", "preguntas")</a>
+                    <a>@Html.ActionLink("Cerrar Sección", "Logout", "Login")</a>
+                }
+                else if (Session["admin"] != null)
+                {
+                    <a>@Html.ActionLink("Productos", "vistaAdmin", "productos")</a>
+                    <a>@Html.ActionLink("Tiendas", "vistaAdmin", "tiendas")</a>
+                    <a>@Html.ActionLink("Servicio Técnico", "vistaAdmin", "servicio_tec")</a>
+                    <a>@Html.ActionLink("Preguntas", "Index", "preguntas")</a>
+                    <a>@Html.ActionLink("Cerrar Sección", "Logout", "Login")</a>
+                }
+            </div>
+
+        </nav>
+    </header>
+    @RenderBody()
+
+    <footer class="piepagina">
+        <div class="grupo1">
+            <div class="box">
+                <p class="asn">Emprendedores <br />Costa Rica</p>
+            </div>
+
+            <div class="box">
+                <p>- COSTA RICA -</p>
+            </div>
+            <div class="box">
+                <h2>Siguenos</h2>
+                <a class="redInsta" href="https://instagram.com/emprendedores_.cr?igshid=MzNlNGNkZWQ4Mg==">Instagram</a>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+
+        <div class="grupo2">
+            <small>&copy; 2023 <b>Proyecto</b> - Todos los Derechos Reservados.</small>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
-</html>
+
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /*HEADER - NAVEGACIÓN*/
+
+
+    .titulo {
+        font-size: 30px;
+        margin: 10px;
+    }
+
+    .titulo a{
+        color:#fff;
+    }
+
+    nav .menu{
+        text-align: center;
+    }
+
+    .menu{
+        padding: 5px;
+        justify-content: end;
+        display: flex;
+    }
+
+    .menu a{
+        color: white;
+        margin: 5px;
+    }
+
+    .menu a:hover {
+        background-color: #fff;
+        color: black;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    /*FOOTER - PIE DE PAGINA*/
+
+    .piepagina {
+        width: 100%;
+    }
+
+    .piepagina .grupo1 {
+        width: 70%;
+        max-width: 800px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 4fr);
+        grid-gap: 30px;
+        padding: 10px 0px;
+    }
+
+    .piepagina .grupo1 .box h2 {
+        color: white;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .piepagina .grupo1 .box p {
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    .piepagina .grupo1 .box .asn {
+        color: white;
+        margin-bottom: 10px;
+    }      
+
+
+    .piepagina .grupo1 .redInsta a {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        margin-right: 10px;
+        background-color: blue;
+        text-align: center;
+        transition: all 300ms ease;
+    }
+
+    .piepagina .grupo2 {
+        color: white;
+        padding: 15px 10px;
+        text-align: center;
+    }
+
+    footer {
+        padding: 20px;
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        opacity: 89%;
+    }
+
+    /*FONDOS DE FOOTER Y HEADER*/
+    header {
+        padding: 5px 20px;
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        opacity: 89%;
+    }
+
+    footer {
+        padding: 20px;
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        opacity: 89%;
+    }
+
+</style>

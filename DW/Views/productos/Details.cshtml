@@ -4,63 +4,144 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>producto</h4>
-    <hr />
-    <dl class="dl-horizontal">
+<div class="contenedore">
+
+    <button>
+        @Html.ActionLink("VOLVER", "Index")
+    </button>
+
+    <dl>
+
+        <!--Nombre-->
+        <div class="nom-detalle">
+            <dt>
+                <!--<h4>Nombre</h4>-->
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre_prod)
+            </dd>
+        </div>
+
+        <!--Imagen-->
+        <div class="imagen-detalle">
+            <dt>
+                <!--<h4>Producto</h4>-->
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.imagen)
+            </dd>
+        </div>
+
+
+        <!--NO MOSTRAR-->
         <dt>
-            @Html.DisplayNameFor(model => model.nombre_prod)
+            <!--<h4>estado</h4>-->
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre_prod)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
-
-        <dd>
+        <dd style="display:none">
             @Html.DisplayFor(model => model.estado)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion_prod)
-        </dt>
+        <!------------>
+        <!--Descripcion-->
+        <div class="info-detalle">
+            <dt>
+                <h3>Descripción</h3>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.descripcion_prod)
-        </dd>
+            <dd class="info-gene">
+                @Html.DisplayFor(model => model.descripcion_prod)
+            </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.telefono_prod)
-        </dt>
+        <!--Medios de Contacto-->
+        <div class="info-detalle">
+            <h3>Medios de Contacto</h3>
+            <dt>
+                <h4>Teléfono</h4>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.telefono_prod)
-        </dd>
+            <dd class="info-gene">
+                @Html.DisplayFor(model => model.telefono_prod)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.correo_personal_prod)
-        </dt>
+            <dt>
+                <h4>Correo</h4>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.correo_personal_prod)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.imagen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.imagen)
-        </dd>
-
+            <dd class="info-gene">
+                @Html.DisplayFor(model => model.correo_personal_prod)
+            </dd>
+        </div>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<style>
+
+    .contenedore {
+        width: 70%;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .nom-detalle {
+        text-align: center;
+        padding: 5px;
+        font-size: 40px;
+        color: #1f2194;
+    }
+
+    .info-gene{
+        font-size: 25px;
+    }
+
+    .info-detalle h3 {
+        padding: 10px;
+        padding-bottom: 5px;
+        color: #0b0e8d;
+       font-size: 30px;
+    }
+
+    .info-detalle h4 {
+        padding-top: 10px;
+        padding-left: 35px;
+        color: #1b78ad;
+        font-size: 20px;
+    }
+
+    .info-detalle .info-gene {
+        padding-left: 90px;
+        padding-top: 5px;
+    }
+
+    .imagen-detalle .imagenn {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    button {
+        background-color: white;
+        border-radius: 10px;
+        border-width: 0px;
+        padding: 5px;
+        margin: 5px;
+        color: black;
+    }
+
+        button:hover {
+            background-color: #FDD55E;
+            color: white;
+            border-radius: 5px;
+        }
+
+</style>

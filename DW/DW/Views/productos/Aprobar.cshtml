@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DW.Models.producto>
+
+@{
+    ViewBag.Title = "Aprobar";
+}
+
+
+
+<h2>Aprobar</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <h4>nombre</h4>
+        </th>
+        <th>
+            <h4>estado</h4>
+        </th>
+        <th>
+            <h4>descripcion</h4>
+        </th>
+        <th>
+            <h4>telefono</h4>
+        </th>
+        <th>
+            <h4>correo</h4>
+        </th>
+        <th>
+            <h4>imagen</h4>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.estado == 2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo_personal_prod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.imagen)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

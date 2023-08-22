@@ -12,12 +12,19 @@ namespace DW.Controllers
 {
     public class preguntasController : Controller
     {
-        private DBEntities db = new DBEntities();
+        private DBEntities2 db = new DBEntities2();
 
         // GET: preguntas
         public ActionResult Index()
         {
-            return View(db.preguntas.ToList());
+            if (Session["admin"] == null)
+            {
+                return Redirect(Url.Content("~/Home/Index"));
+            }
+            else
+            {
+                return View(db.preguntas.ToList());
+            }
         }
 
         // GET: preguntas/Details/5
@@ -46,13 +53,18 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,titulo_pregunta,descripcion_pregunta,correo_personal_pregunta")] pregunta pregunta)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.preguntas.Add(pregunta);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.preguntas.Add(pregunta);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }catch (Exception ex)
+            {
+                return RedirectToAction("Error", "preguntas");
             }
-
             return View(pregunta);
         }
 
@@ -83,19 +95,27 @@ namespace DW.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,titulo_pregunta,descripcion_pregunta,correo_personal_pregunta")] pregunta pregunta)
         {
-            if (Session["admin"] == null)
+            try
             {
-                return Redirect(Url.Content("~/Home/Index"));
-            }
-            else
-            {
-                if (ModelState.IsValid)
+                if (Session["admin"] == null)
                 {
-                    db.Entry(pregunta).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Redirect(Url.Content("~/Home/Index"));
                 }
-                return View(pregunta);
+                else
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(pregunta).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View(pregunta);
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "productos");
+
             }
         }
 
@@ -138,8 +158,13 @@ namespace DW.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public ActionResult Error()
+        {
+            return View();
+        }
+    
 
-        protected override void Dispose(bool disposing)
+    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

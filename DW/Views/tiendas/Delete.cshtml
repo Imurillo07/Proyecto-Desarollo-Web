@@ -4,15 +4,15 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
+<div class="contenedore">
+    <h2>Delete</h2>
+    <h3>Are you sure you want to delete this?</h3>
     <h4>tienda</h4>
-    <hr />
-    <dl class="dl-horizontal">
+
+    <dl class="info-delete">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre_tienda)
+            <h4>Nombre</h4>
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.estado)
+            <h4>Estado</h4>
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descripcion_tienda)
+            <h4>Descripcion</h4>
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.telefono_tienda)
+            <h4>Telefono</h4>
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.imagen_tienda)
+            <h4>Imagen</h4>
         </dt>
 
         <dd>
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.correo_tienda)
+            <h4>Correo</h4>
         </dt>
 
         <dd>
@@ -61,7 +61,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -70,3 +71,41 @@
         </div>
     }
 </div>
+
+
+<style>
+
+    .contenedore {
+        width: 40%;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-delete, h2 {
+        margin: 5px;
+        text-align: center;
+    }
+
+    .boton {
+        background-color: white;
+        border-radius: 10px;
+        border-width: 0px;
+        padding: 5px;
+        margin: 5px;
+        color: black;
+    }
+
+
+    input[type="submit"] {
+        background-color: #FDD55E;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>

@@ -1,61 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities2">
     <EntitySetMapping Name="preguntas">
       <EntityTypeMapping TypeName="DBModel.pregunta">
         <MappingFragment StoreEntitySet="pregunta">
-          <ScalarProperty Name="correo_personal_pregunta" ColumnName="correo_personal_pregunta" />
-          <ScalarProperty Name="descripcion_pregunta" ColumnName="descripcion_pregunta" />
-          <ScalarProperty Name="titulo_pregunta" ColumnName="titulo_pregunta" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="titulo_pregunta" ColumnName="titulo_pregunta" />
+          <ScalarProperty Name="descripcion_pregunta" ColumnName="descripcion_pregunta" />
+          <ScalarProperty Name="correo_personal_pregunta" ColumnName="correo_personal_pregunta" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="productoes">
       <EntityTypeMapping TypeName="DBModel.producto">
         <MappingFragment StoreEntitySet="producto">
-          <ScalarProperty Name="imagen" ColumnName="imagen" />
-          <ScalarProperty Name="correo_personal_prod" ColumnName="correo_personal_prod" />
-          <ScalarProperty Name="telefono_prod" ColumnName="telefono_prod" />
-          <ScalarProperty Name="descripcion_prod" ColumnName="descripcion_prod" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="nombre_prod" ColumnName="nombre_prod" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_prod" ColumnName="nombre_prod" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="descripcion_prod" ColumnName="descripcion_prod" />
+          <ScalarProperty Name="telefono_prod" ColumnName="telefono_prod" />
+          <ScalarProperty Name="correo_personal_prod" ColumnName="correo_personal_prod" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="servicio_tec">
       <EntityTypeMapping TypeName="DBModel.servicio_tec">
         <MappingFragment StoreEntitySet="servicio_tec">
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="descripcion_sertec" ColumnName="descripcion_sertec" />
-          <ScalarProperty Name="titulo_sertec" ColumnName="titulo_sertec" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="titulo_sertec" ColumnName="titulo_sertec" />
+          <ScalarProperty Name="descripcion_sertec" ColumnName="descripcion_sertec" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="correo_personal" ColumnName="correo_personal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tiendas">
       <EntityTypeMapping TypeName="DBModel.tienda">
         <MappingFragment StoreEntitySet="tienda">
-          <ScalarProperty Name="correo_tienda" ColumnName="correo_tienda" />
-          <ScalarProperty Name="imagen_tienda" ColumnName="imagen_tienda" />
-          <ScalarProperty Name="telefono_tienda" ColumnName="telefono_tienda" />
-          <ScalarProperty Name="descripcion_tienda" ColumnName="descripcion_tienda" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="nombre_tienda" ColumnName="nombre_tienda" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_tienda" ColumnName="nombre_tienda" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="descripcion_tienda" ColumnName="descripcion_tienda" />
+          <ScalarProperty Name="telefono_tienda" ColumnName="telefono_tienda" />
+          <ScalarProperty Name="imagen_tienda" ColumnName="imagen_tienda" />
+          <ScalarProperty Name="correo_tienda" ColumnName="correo_tienda" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="usuarios">
       <EntityTypeMapping TypeName="DBModel.usuario">
         <MappingFragment StoreEntitySet="usuarios">
-          <ScalarProperty Name="permiso" ColumnName="permiso" />
-          <ScalarProperty Name="clave" ColumnName="clave" />
-          <ScalarProperty Name="correo_personal" ColumnName="correo_personal" />
-          <ScalarProperty Name="apellido" ColumnName="apellido" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo_personal" ColumnName="correo_personal" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="permiso" ColumnName="permiso" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
